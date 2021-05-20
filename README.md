@@ -1,15 +1,18 @@
-# base_flutter_app
 <div dir="rtl">
+ base_flutter_app
+
 
 الگویی برای پروژهای فلاتر بر اساس پکیج Getx
-</div>
+
 
 ## نحوه استفاده و کاربرد
-<div dir="rtl">
+
 این پروژه نقطه شروعی برای پروژه های فلاتری است که با بکارگیری از پکیج Getx علاوه بر مدیریت وضعیت ساده تر از امکانات و توابع توکار این پکیج نیز می توان استفاده کرد . بعضی از ویژگیهایی که لازمه هر نرم افزار موبایلی می باشد مانند تغییر زبان و قالب و همچنین منوهای آماده و کتابخانه هایی که کاربرد زیادی دارند به پروژه اضافه شده است و به صورت مداوم تغییرات به مخزن کد ارسال خواهند شد .
 <br/>
-- [لینک مخزن Getx]     (https://github.com/jonataslaw/getx)
+- <a href='https://github.com/jonataslaw/getx'> 
+  [لینک مخزن Getx]</a>
 <br/>
-- [لینک مستندات Getx ])(https://github.com/jonataslaw/getx/blob/master/documentation/en_US/state_management.md#simple-state-manager)
+- <a  href='https://github.com/jonataslaw/getx/blob/master/documentation/en_US/state_management.md#simple-state-manager'> [لینک مستندات Getx ])</a>
+
 
 </div>
