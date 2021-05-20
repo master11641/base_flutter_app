@@ -2,7 +2,7 @@
 
 الگویی برای پروژهای فلاتر بر اساس پکیج Getx
 
-## Getting Started
+## نحوه استفاده و کاربرد
 
 This project is a starting point for a Flutter application.
 
