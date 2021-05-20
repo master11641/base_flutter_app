@@ -41,8 +41,8 @@ class MyHomePage extends StatelessWidget {
     int max = 4;
     rnd = new Random();
     var randomNumber = min + rnd.nextInt(max - min);
-    if(randomNumber== Get.find<ThemeContoller>().themeIndex){
-        randomNumber = _getRandomNumber();
+    if (randomNumber == Get.find<ThemeContoller>().themeIndex) {
+      randomNumber = _getRandomNumber();
     }
     return randomNumber;
   }
@@ -50,11 +50,78 @@ class MyHomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      drawer: Drawer(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            DrawerHeader(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: <Widget>[
+                  Text(
+                    'John Doe',
+                  ),
+                ],
+              ),
+              // decoration: BoxDecoration(
+              //   image: DecorationImage(
+              //     //image: AssetImage('assets/images/menu_bg.png'),
+              //     fit: BoxFit.cover,
+              //   ),
+              //),
+            ),
+            Expanded(
+              // flex: 2,
+              child: ListView(
+                // Important: Remove any padding from the ListView.
+                padding: EdgeInsets.zero,
+                children: <Widget>[
+                  Padding(
+                    padding: const EdgeInsets.all(16.0),
+                    child: Text(
+                      'Header',
+                      // style: textTheme.headline6,
+                    ),
+                  ),
+                  Divider(
+                    height: 1,
+                    thickness: 1,
+                  ),
+                  ListTile(
+                    leading: Icon(Icons.favorite),
+                    title: Text('Item 1'),
+                    // selected: _selectedDestination == 0,
+                    // onTap: () => selectDestination(0),
+                  ),
+                  Divider(
+                    height: 1,
+                    thickness: 1,
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.all(16.0),
+                    child: Text(
+                      'Category Label',
+                    ),
+                  ),
+                  ListTile(
+                    leading: Icon(Icons.bookmark),
+                    title: Text('Item A'),
+                    // selected: ,
+                    //  onTap: () => selectDestination(3),
+                  ),
+                ],
+              ),
+            ),
+          ],
+        ),
+      ),
       appBar: AppBar(
         title: Text('title'.tr),
       ),
-      body: Column(
+      body: Column(                
         children: [
+          SizedBox(height: 15,),
           Center(
             child: SizedBox(
               width: 300,
@@ -81,7 +148,6 @@ class MyHomePage extends StatelessWidget {
                         EdgeInsets.only(right: 30, left: 30))),
                 child: Text('change_theme_button_text'.tr),
                 onPressed: () {
-                 
                   var themeIndex = _getRandomNumber();
                   Get.find<ThemeContoller>()
                       .buildThemeData(themeIndex: themeIndex);
