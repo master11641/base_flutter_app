@@ -1,16 +1,13 @@
 # base_flutter_app
 <div dir="rtl">
+
 الگویی برای پروژهای فلاتر بر اساس پکیج Getx
 </div>
+
 ## نحوه استفاده و کاربرد
+<div dir="rtl">
+این پروژه نقطه شروعی برای پروژه های فلاتری است که با بکارگیری از پکیج Getx علاوه بر مدیریت وضعیت ساده تر از امکانات و توابع توکار این پکیج نیز می توان استفاده کرد . بعضی از ویژگیهایی که لازمه هر نرم افزار موبایلی می باشد مانند تغییر زبان و قالب و همچنین منوهای آماده و کتابخانه هایی که کاربرد زیادی دارند به پروژه اضافه شده است و به صورت مداوم تغییرات به مخزن کد ارسال خواهند شد .
+<P>- [Lab: لینک مخزن Getx](https://github.com/jonataslaw/getx)
+</p>
 
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
-
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+</div>
