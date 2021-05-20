@@ -1,6 +1,6 @@
 # base_flutter_app
 
-A new Flutter project.
+الگویی برای پروژهای فلاتر بر اساس پکیج Getx
 
 ## Getting Started
 
