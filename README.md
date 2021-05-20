@@ -1,7 +1,7 @@
 # base_flutter_app
-
+<div dir="rtl">
 الگویی برای پروژهای فلاتر بر اساس پکیج Getx
-
+</div>
 ## نحوه استفاده و کاربرد
 
 This project is a starting point for a Flutter application.
