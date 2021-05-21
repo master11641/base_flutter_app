@@ -16,6 +16,6 @@
 <a  href='https://github.com/jonataslaw/getx/blob/master/documentation/en_US/state_management.md#simple-state-manager'> [لینک مستندات Getx ]</a>
 <br/>
 <br/>
-<img src='https://github.com/master11641/base_flutter_app/blob/master/images/image1.png' alt='snapshot' style="/* max-width:100%; */width: 300px;height: 533px;margin: 0 auto;">
+<img src='https://github.com/master11641/base_flutter_app/blob/master/images/image1.png' alt='snapshot' style='width: 300px;height: 533px;margin: 0 auto;'>
 
 </div>
