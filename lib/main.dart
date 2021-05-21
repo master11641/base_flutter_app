@@ -179,10 +179,9 @@ class MyHomePage extends StatelessWidget {
                 style: ButtonStyle(
                     padding: MaterialStateProperty.all<EdgeInsets>(
                         EdgeInsets.only(right: 30, left: 30))),
-                child: Text('change_theme_button_text'.tr),
-                onPressed: () {
-                    Get.to(ProductList());
-                 // Get.to(CategoryAdd( Category(id:2, name:"پوشاک زنانه", isActive:true, isDeleted:false)));
+                child: Text('category_edit_button'.tr),
+                onPressed: () async{                   
+                  Get.to(CategoryAdd(await Category().getById(1)));
                 },
               ),
             ),
@@ -247,6 +246,7 @@ class Messages extends Translations {
           'change_theme_button_text': 'Change Theme',
           'change_theme_title_text': 'Active Theme :',
           'change_local_title_text': 'Active Local :',
+          'category_edit_button':'Edit Category',
         },
         'fa_IR': {
           'hello': 'سلام پکیج Getx',
@@ -255,6 +255,7 @@ class Messages extends Translations {
           'change_theme_button_text': 'تغییر تم',
           'change_theme_title_text': 'تم فعال:',
           'change_local_title_text': 'زبان فعال:',
+          'category_edit_button':'ویرایش گروه',
         }
       };
 }
