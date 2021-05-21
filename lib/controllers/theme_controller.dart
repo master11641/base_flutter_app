@@ -1,4 +1,4 @@
-import 'package:base_flutter_app/models/app_theme.dart';
+import 'package:base_flutter_app/model/app_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:get/state_manager.dart';
 
@@ -17,13 +17,13 @@ class ThemeContoller extends GetxController {
    this.themeIndex = themeIndex;
     currentTheme.value = myThemes[themeIndex];
     themeData( ThemeData(
-          brightness: currentTheme.value.theme.brightness,
-          primarySwatch: currentTheme.value.theme.primarySwatch,
-          primaryColor: currentTheme.value.theme.primaryColor,
-          tabBarTheme: currentTheme.value.theme.tabBarTheme,
-          textTheme: currentTheme.value.theme.textTheme,
-          buttonTheme: currentTheme.value.theme.buttonThemeData,
-          inputDecorationTheme: currentTheme.value.theme.inputDecorationTheme));
+          brightness: currentTheme.value.theme?.brightness,
+          primarySwatch: currentTheme.value.theme?.primarySwatch,
+          primaryColor: currentTheme.value.theme?.primaryColor,
+          tabBarTheme: currentTheme.value.theme?.tabBarTheme,
+          textTheme: currentTheme.value.theme?.textTheme,
+          buttonTheme: currentTheme.value.theme?.buttonThemeData,
+          inputDecorationTheme: currentTheme.value.theme?.inputDecorationTheme));
           update(); 
     // themeData.update((x) {
     //   x = ThemeData(

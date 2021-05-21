@@ -5,9 +5,23 @@ import 'package:get/get_navigation/src/root/internacionalization.dart';
 import 'package:get/get.dart';
 
 import 'controllers/theme_controller.dart';
+import 'model/model.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await runSamples();
   runApp(MyApp());
+}
+
+Future runSamples() async {
+  final category = await Category().select().toSingle();
+  if (category == null) {
+    await Category(name: 'Notebooks', isActive: true).save();
+    await Category(name: 'Ultrabooks', isActive: true).save();
+  } else {
+    print(
+        'There is already categories in the database.. addCategories will not run');
+  }
 }
 
 class MyApp extends StatelessWidget {
@@ -34,7 +48,7 @@ class MyApp extends StatelessWidget {
 }
 
 class MyHomePage extends StatelessWidget {
-  const MyHomePage({Key key}) : super(key: key);
+  const MyHomePage() : super();
   int _getRandomNumber() {
     Random rnd;
     int min = 1;
@@ -119,9 +133,11 @@ class MyHomePage extends StatelessWidget {
       appBar: AppBar(
         title: Text('title'.tr),
       ),
-      body: Column(                
+      body: Column(
         children: [
-          SizedBox(height: 15,),
+          SizedBox(
+            height: 15,
+          ),
           Center(
             child: SizedBox(
               width: 300,
@@ -132,7 +148,7 @@ class MyHomePage extends StatelessWidget {
                 child: Text('change_local_button_text'.tr),
                 onPressed: () {
                   var currentLocale = Get.locale;
-                  Get.updateLocale(currentLocale.languageCode == 'fa'
+                  Get.updateLocale(currentLocale!.languageCode == 'fa'
                       ? Locale('en', 'US')
                       : Locale('fa', 'IR'));
                 },
@@ -159,6 +175,21 @@ class MyHomePage extends StatelessWidget {
           Center(
             child: SizedBox(
               width: 300,
+              child: ElevatedButton(
+                style: ButtonStyle(
+                    padding: MaterialStateProperty.all<EdgeInsets>(
+                        EdgeInsets.only(right: 30, left: 30))),
+                child: Text('change_theme_button_text'.tr),
+                onPressed: () {
+                    Get.to(ProductList());
+                 // Get.to(CategoryAdd( Category(id:2, name:"پوشاک زنانه", isActive:true, isDeleted:false)));
+                },
+              ),
+            ),
+          ),
+          Center(
+            child: SizedBox(
+              width: 300,
               child: Container(
                 padding:
                     EdgeInsets.only(top: 10, bottom: 10, right: 15, left: 15),
@@ -174,7 +205,7 @@ class MyHomePage extends StatelessWidget {
                           Row(
                             children: [
                               Text('change_local_title_text'.tr),
-                              Text(Get.locale.languageCode)
+                              Text(Get.locale!.languageCode)
                             ],
                           ),
                           Row(
