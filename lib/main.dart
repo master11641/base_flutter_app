@@ -1,5 +1,7 @@
 import 'dart:math';
 
+import 'package:base_flutter_app/tools/popup.dart';
+import 'package:base_flutter_app/tools/slidemenu.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get_navigation/src/root/internacionalization.dart';
 import 'package:get/get.dart';
@@ -20,7 +22,7 @@ Future runSamples() async {
     await Category(name: 'Ultrabooks', isActive: true).save();
   } else {
     print(
-        'There is already categories in the database.. addCategories will not run');
+        'There is  already categories in the database.. addCategories will not run');
   }
 }
 
@@ -61,75 +63,71 @@ class MyHomePage extends StatelessWidget {
     return randomNumber;
   }
 
+  Widget _sideBarWidget() {
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.start,
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        DrawerHeader(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: <Widget>[
+              Text(
+                'John Doe',
+              ),
+            ],
+          ),
+        ),
+        Expanded(
+          // flex: 2,
+          child: ListView(
+            // Important: Remove any padding from the ListView.
+            padding: EdgeInsets.zero,
+            children: <Widget>[
+              Padding(
+                padding: const EdgeInsets.all(16.0),
+                child: Text(
+                  'Header',
+                  // style: textTheme.headline6,
+                ),
+              ),
+              Divider(
+                height: 1,
+                thickness: 1,
+              ),
+              ListTile(
+                leading: Icon(Icons.favorite),
+                title: Text('Item 1'),
+                // selected: _selectedDestination == 0,
+                // onTap: () => selectDestination(0),
+              ),
+              Divider(
+                height: 1,
+                thickness: 1,
+              ),
+              Padding(
+                padding: const EdgeInsets.all(16.0),
+                child: Text(
+                  'Category Label',
+                ),
+              ),
+              ListTile(
+                leading: Icon(Icons.bookmark),
+                title: Text('Item A'),
+                // selected: ,
+                //  onTap: () => selectDestination(3),
+              ),
+            ],
+          ),
+        ),
+      ],
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      drawer: Drawer(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.start,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            DrawerHeader(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: <Widget>[
-                  Text(
-                    'John Doe',
-                  ),
-                ],
-              ),
-              // decoration: BoxDecoration(
-              //   image: DecorationImage(
-              //     //image: AssetImage('assets/images/menu_bg.png'),
-              //     fit: BoxFit.cover,
-              //   ),
-              //),
-            ),
-            Expanded(
-              // flex: 2,
-              child: ListView(
-                // Important: Remove any padding from the ListView.
-                padding: EdgeInsets.zero,
-                children: <Widget>[
-                  Padding(
-                    padding: const EdgeInsets.all(16.0),
-                    child: Text(
-                      'Header',
-                      // style: textTheme.headline6,
-                    ),
-                  ),
-                  Divider(
-                    height: 1,
-                    thickness: 1,
-                  ),
-                  ListTile(
-                    leading: Icon(Icons.favorite),
-                    title: Text('Item 1'),
-                    // selected: _selectedDestination == 0,
-                    // onTap: () => selectDestination(0),
-                  ),
-                  Divider(
-                    height: 1,
-                    thickness: 1,
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.all(16.0),
-                    child: Text(
-                      'Category Label',
-                    ),
-                  ),
-                  ListTile(
-                    leading: Icon(Icons.bookmark),
-                    title: Text('Item A'),
-                    // selected: ,
-                    //  onTap: () => selectDestination(3),
-                  ),
-                ],
-              ),
-            ),
-          ],
-        ),
-      ),
+      drawer: Drawer(child: _sideBarWidget()),
       appBar: AppBar(
         title: Text('title'.tr),
       ),
@@ -180,8 +178,33 @@ class MyHomePage extends StatelessWidget {
                     padding: MaterialStateProperty.all<EdgeInsets>(
                         EdgeInsets.only(right: 30, left: 30))),
                 child: Text('category_edit_button'.tr),
-                onPressed: () async{                   
+                onPressed: () async {
                   Get.to(CategoryAdd(await Category().getById(1)));
+                },
+              ),
+            ),
+          ),
+          Center(
+            child: SizedBox(
+              width: 300,
+              child: ElevatedButton(
+                style: ButtonStyle(
+                    padding: MaterialStateProperty.all<EdgeInsets>(
+                        EdgeInsets.only(right: 30, left: 30))),
+                child: Text('show_popup_button'.tr),
+                onPressed: () async {
+                  showPopup(
+                      context,
+                      Column(
+                        children: [
+                          SizedBox(
+                            height: 25,
+                          ),
+                          Text('blablabla...'),
+                          Text('blablabla...'),
+                        ],
+                      ),
+                      'show_popup_button'.tr);
                 },
               ),
             ),
@@ -246,7 +269,8 @@ class Messages extends Translations {
           'change_theme_button_text': 'Change Theme',
           'change_theme_title_text': 'Active Theme :',
           'change_local_title_text': 'Active Local :',
-          'category_edit_button':'Edit Category',
+          'category_edit_button': 'Edit Category',
+          'show_popup_button': 'Show Popup',
         },
         'fa_IR': {
           'hello': 'سلام پکیج Getx',
@@ -255,7 +279,8 @@ class Messages extends Translations {
           'change_theme_button_text': 'تغییر تم',
           'change_theme_title_text': 'تم فعال:',
           'change_local_title_text': 'زبان فعال:',
-          'category_edit_button':'ویرایش گروه',
+          'category_edit_button': 'ویرایش گروه',
+          'show_popup_button': 'نمایش پیغام',
         }
       };
 }
