@@ -31,7 +31,9 @@ class UITools {
       backgroundColor: UITools.mainBgColorLighter,
       itemStyle: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
       doneStyle: TextStyle(color: UITools.mainTextColor, fontSize: 16));
-
+// Widget getCircleAvatar(){
+//   return 
+// }
   Widget getMainPage(Widget body, String title /*, void refreshList()*/) {
     return Scaffold(
       backgroundColor: mainBgColor,
