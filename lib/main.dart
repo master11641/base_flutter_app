@@ -37,7 +37,8 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     //themeController.buildThemeData();
 
-    return GetMaterialApp(
+    return GetMaterialApp(    
+      debugShowCheckedModeBanner: false,
       translations: Messages(), // your translations
       locale:
           Locale('en', 'US'), // translations will be displayed in that locale
@@ -75,176 +76,152 @@ class MyHomePage extends StatelessWidget {
       appBar: AppBar(
         title: Text('title'.tr),
       ),
-      body: Column(
-        children:[
-      
-          Column(
-            children: [
-              SizedBox(
-                height: 15,
-              ),
-              Center(
-                child: SizedBox(
-                  width: 300,
-                  child: ElevatedButton(
-                    style: ButtonStyle(
-                        padding: MaterialStateProperty.all<EdgeInsets>(
-                            EdgeInsets.only(right: 30, left: 30))),
-                    child: Text('change_local_button_text'.tr),
-                    onPressed: () {
-                      var currentLocale = Get.locale;
-                      Get.updateLocale(currentLocale!.languageCode == 'fa'
-                          ? Locale('en', 'US')
-                          : Locale('fa', 'IR'));
-                    },
-                  ),
+      body: Column(children: [
+        Column(
+          children: [
+            SizedBox(
+              height: 15,
+            ),
+            Center(
+              child: SizedBox(
+                width: 300,
+                child: ElevatedButton(
+                  style: ButtonStyle(
+                      padding: MaterialStateProperty.all<EdgeInsets>(
+                          EdgeInsets.only(right: 30, left: 30))),
+                  child: Text('change_local_button_text'.tr),
+                  onPressed: () {
+                    var currentLocale = Get.locale;
+                    Get.updateLocale(currentLocale!.languageCode == 'fa'
+                        ? Locale('en', 'US')
+                        : Locale('fa', 'IR'));
+                  },
                 ),
               ),
-              Center(
-                child: SizedBox(
-                  width: 300,
-                  child: ElevatedButton(
-                    style: ButtonStyle(
-                        padding: MaterialStateProperty.all<EdgeInsets>(
-                            EdgeInsets.only(right: 30, left: 30))),
-                    child: Text('change_theme_button_text'.tr),
-                    onPressed: () {
-                      var themeIndex = _getRandomNumber();
-                      Get.find<ThemeContoller>()
-                          .buildThemeData(themeIndex: themeIndex);
-                      Get.changeTheme(Get.find<ThemeContoller>().themeData.value);
-                    },
-                  ),
+            ),
+            Center(
+              child: SizedBox(
+                width: 300,
+                child: ElevatedButton(
+                  style: ButtonStyle(
+                      padding: MaterialStateProperty.all<EdgeInsets>(
+                          EdgeInsets.only(right: 30, left: 30))),
+                  child: Text('change_theme_button_text'.tr),
+                  onPressed: () {
+                    var themeIndex = _getRandomNumber();
+                    Get.find<ThemeContoller>()
+                        .buildThemeData(themeIndex: themeIndex);
+                    Get.changeTheme(Get.find<ThemeContoller>().themeData.value);
+                  },
                 ),
               ),
-              Center(
-                child: SizedBox(
-                  width: 300,
-                  child: ElevatedButton(
-                    style: ButtonStyle(
-                        padding: MaterialStateProperty.all<EdgeInsets>(
-                            EdgeInsets.only(right: 30, left: 30))),
-                    child: Text('category_edit_button'.tr),
-                    onPressed: () async {
-                      Get.to(CategoryAdd(await Category().getById(1)));
-                    },
-                  ),
+            ),
+            Center(
+              child: SizedBox(
+                width: 300,
+                child: ElevatedButton(
+                  style: ButtonStyle(
+                      padding: MaterialStateProperty.all<EdgeInsets>(
+                          EdgeInsets.only(right: 30, left: 30))),
+                  child: Text('category_edit_button'.tr),
+                  onPressed: () async {
+                    Get.to(CategoryAdd(await Category().getById(1)));
+                  },
                 ),
               ),
-              Center(
-                child: SizedBox(
-                  width: 300,
-                  child: ElevatedButton(
-                    style: ButtonStyle(
-                        padding: MaterialStateProperty.all<EdgeInsets>(
-                            EdgeInsets.only(right: 30, left: 30))),
-                    child: Text('show_popup_button'.tr),
-                    onPressed: () async {
-                      showPopup(
-                          context,
-                          Column(
-                            children: [
-                              SizedBox(
-                                height: 25,
-                              ),
-                              Text('blablabla...'),
-                              Text('blablabla...'),
-                            ],
-                          ),
-                          'show_popup_button'.tr);
-                    },
-                  ),
-                ),
-              ),
-              Center(
-                child: SizedBox(
-                  width: 300,
-                  child: ElevatedButton(
-                    style: ButtonStyle(
-                        padding: MaterialStateProperty.all<EdgeInsets>(
-                            EdgeInsets.only(right: 30, left: 30))),
-                    child: Text('infinit_scroll'.tr),
-                    onPressed: () async {
-                      // var response =
-                      //     await NetService.fetchJsonData(Urls.storesUrl);
-                      //print(response);
-                      _storeController.fetchData();
-                    },
-                  ),
-                ),
-              ),
-              Center(
-                child: SizedBox(
-                  width: 300,
-                  child: Container(
-                    padding:
-                        EdgeInsets.only(top: 10, bottom: 10, right: 15, left: 15),
-                    decoration: BoxDecoration(
-                        borderRadius: BorderRadius.all(Radius.circular(5)),
-                        color: Theme.of(context).backgroundColor),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        GetBuilder<ThemeContoller>(
-                          builder: (_) => Column(
-                            children: [
-                              Row(
-                                children: [
-                                  Text('change_local_title_text'.tr),
-                                  Text(Get.locale!.languageCode)
-                                ],
-                              ),
-                              Row(
-                                children: [
-                                  Text('change_theme_title_text'.tr),
-                                  Text(_.currentTheme.value.name)
-                                ],
-                              ),
-                              Row(
-                                children: [
-                                  Text('hello'.tr),
-                                ],
-                              ),
-                              Obx(
-                                () => Text(
-                                  '${_storeController.currentPage}',
-                                  style: Theme.of(context).textTheme.headline4,
-                                ),
-                              ),
-                              // Obx(() => Container(
-                              //       child: Row(
-                              //         children:
-                              //             _storeController.pages.map((pageModel) {
-                              //           return Text(pageModel.total.toString());
-                              //         }).toList(),
-                              //       ),
-                              //     )),
-                            ],
-                          ),
+            ),
+            Center(
+              child: SizedBox(
+                width: 300,
+                child: ElevatedButton(
+                  style: ButtonStyle(
+                      padding: MaterialStateProperty.all<EdgeInsets>(
+                          EdgeInsets.only(right: 30, left: 30))),
+                  child: Text('show_popup_button'.tr),
+                  onPressed: () async {
+                    showPopup(
+                        context,
+                        Column(
+                          children: [
+                            SizedBox(
+                              height: 25,
+                            ),
+                            Text('blablabla...'),
+                            Text('blablabla...'),
+                          ],
                         ),
-                        StoresHorizontal(),
-                        // Obx(
-                        //   () => Container(
-                        //     height: 50,
-                        //       width: double.infinity,
-                        //       child: ListView.builder(
-                        //           itemCount: _storeController.pages.length,
-                        //           itemBuilder: (context, index) {
-                        //             return Text('dfgfdhg');
-                        //           },
-                        //           scrollDirection: Axis.horizontal)),
-                        // ),
-                      ],
-                    ),
+                        'show_popup_button'.tr);
+                  },
+                ),
+              ),
+            ),
+            Center(
+              child: SizedBox(
+                width: 300,
+                child: ElevatedButton(
+                  style: ButtonStyle(
+                      padding: MaterialStateProperty.all<EdgeInsets>(
+                          EdgeInsets.only(right: 30, left: 30))),
+                  child: Text('infinit_scroll'.tr),
+                  onPressed: () async {
+                    // var response =
+                    //     await NetService.fetchJsonData(Urls.storesUrl);
+                    //print(response);
+                    _storeController.fetchData();
+                  },
+                ),
+              ),
+            ),
+            Center(
+              child: SizedBox(
+                width: 300,
+                child: Container(
+                  padding:
+                      EdgeInsets.only(top: 10, bottom: 10, right: 15, left: 15),
+                  decoration: BoxDecoration(
+                      borderRadius: BorderRadius.all(Radius.circular(5)),
+                      color: Theme.of(context).backgroundColor),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      GetBuilder<ThemeContoller>(
+                        builder: (_) => Column(
+                          children: [
+                            Row(
+                              children: [
+                                Text('change_local_title_text'.tr),
+                                Text(Get.locale!.languageCode)
+                              ],
+                            ),
+                            Row(
+                              children: [
+                                Text('change_theme_title_text'.tr),
+                                Text(_.currentTheme.value.name)
+                              ],
+                            ),
+                            Row(
+                              children: [
+                                Text('hello'.tr),
+                              ],
+                            ),
+                            Obx(
+                              () => Text(
+                                '${_storeController.currentPage}',
+                                style: Theme.of(context).textTheme.headline4,
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                      StoresHorizontal(),
+                    ],
                   ),
                 ),
               ),
-            ],
-          ),
-      
-        ]
-      ),
-       
+            ),
+          ],
+        ),
+      ]),
       floatingActionButton: FloatingActionButton(
         onPressed: () {},
         child: Icon(Icons.phone),
