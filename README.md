@@ -26,6 +26,6 @@ flutter pub run build_runner build --delete-conflicting-outputs
 <a  href='https://github.com/hhtokpinar/sqfEntity'> [sqfEntity ORM ]</a>
 <br/>
 <br/>
-<img width='300px' height='533px' src='https://github.com/master11641/base_flutter_app/blob/master/images/image1.png' alt='snapshot' />
+<!-- <img width='300px' height='533px' src='https://github.com/master11641/base_flutter_app/blob/master/images/image1.png' alt='snapshot' /> -->
 
 </div>
