@@ -2,6 +2,7 @@ import 'dart:math';
 
 import 'package:base_flutter_app/pages/stores/stores_controller.dart';
 import 'package:base_flutter_app/pages/stores/views/stores_horizontal.dart';
+import 'package:base_flutter_app/pages/stores/views/stores_vertical.dart';
 
 import 'package:base_flutter_app/tools/popup.dart';
 import 'package:base_flutter_app/tools/sidebar.dart';
@@ -37,7 +38,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     //themeController.buildThemeData();
 
-    return GetMaterialApp(    
+    return GetMaterialApp(
       debugShowCheckedModeBanner: false,
       translations: Messages(), // your translations
       locale:
@@ -164,10 +165,13 @@ class MyHomePage extends StatelessWidget {
                           EdgeInsets.only(right: 30, left: 30))),
                   child: Text('infinit_scroll'.tr),
                   onPressed: () async {
-                    // var response =
-                    //     await NetService.fetchJsonData(Urls.storesUrl);
-                    //print(response);
-                    _storeController.fetchData();
+                    //Get.to(StoresVerticalPage());
+                    //Navigator.of(context).push(Route.);
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => StoresVerticalPage()),
+                    );
                   },
                 ),
               ),
