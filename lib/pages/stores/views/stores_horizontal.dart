@@ -39,7 +39,7 @@ class _StoresHorizontalState extends State<StoresHorizontal>
             scrollDirection: Axis.horizontal)));
   }
 
-  Widget _buildItems(Items item, int index) {
+  Widget _buildItems(StoreItem item, int index) {
     _animation = Tween<double>(begin: 0.0, end: 1.0).animate(CurvedAnimation(
         parent: _animationController!,
         curve: Interval((1 / 9) * 3, 1.0, curve: Curves.fastOutSlowIn)));
@@ -71,7 +71,7 @@ class _StoresHorizontalState extends State<StoresHorizontal>
   }
 }
 
-Widget _buildCard(Items item,BuildContext context) {
+Widget _buildCard(StoreItem item,BuildContext context) {
   return Padding(
     padding: EdgeInsets.fromLTRB(5, 1, 5, 1),
     child: Container(

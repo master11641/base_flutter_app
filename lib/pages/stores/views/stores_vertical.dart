@@ -30,7 +30,7 @@ class _StoresVerticalPageState extends State<StoresVerticalPage> {
   }
 }
 
-Widget _buildCard(Items item, BuildContext context) {
+Widget _buildCard(StoreItem item, BuildContext context) {
   return Padding(
     padding: EdgeInsets.fromLTRB(5, 1, 5, 1),
     child: Container(

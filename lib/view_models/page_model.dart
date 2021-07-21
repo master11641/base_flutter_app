@@ -1,19 +1,21 @@
-class PageModel {
+class PageModel<T extends  JsonConvertable> {
   bool? hasMore;
   int? page;
   int? total;
-  List<Items>? items;
-
+  List<T>? items;
+ 
   PageModel({this.hasMore, this.page, this.total, this.items});
 
-  PageModel.fromJson(Map<String, dynamic> json) {
+  PageModel.fromJson(Map<String, dynamic> json, T valueObject) {
     hasMore = json['hasMore'];
     page = json['page'];
     total = json['total'];
     if (json['items'] != null) {
-      items = <Items>[];
+      
+      items = <T>[];
       json['items'].forEach((v) {
-        items!.add(new Items.fromJson(v));
+       // items!.add(new Items.fromJson(v));
+       items!.add(  valueObject.fromJson(v) as T);
       });
     }
   }
@@ -24,13 +26,16 @@ class PageModel {
     data['page'] = this.page;
     data['total'] = this.total;
     if (this.items != null) {
-      data['items'] = this.items!.map((v) => v.toJson()).toList();
+      data['items'] = this.items!.map(( v ) => v.toJson()).toList();
     }
     return data;
   }
 }
-
-class Items {
+abstract class JsonConvertable{
+  JsonConvertable fromJson(Map<String, dynamic> json);
+   Map<String, dynamic> toJson();
+}
+class StoreItem implements JsonConvertable{
   int? id;
   String? title;
   String? imageUrl;
@@ -39,7 +44,7 @@ class Items {
   bool? isFreeDeliveryExist;
   int? tcategoryStoreId;
 
-  Items(
+  StoreItem(
       {this.id,
       this.title,
       this.imageUrl,
@@ -47,17 +52,7 @@ class Items {
       this.logoImageUrl,
       this.isFreeDeliveryExist,
       this.tcategoryStoreId});
-
-  Items.fromJson(Map<String, dynamic> json) {
-    id = json['id'];
-    title = json['title'];
-    imageUrl = json['imageUrl'];
-    address = json['address'];
-    logoImageUrl = json['logoImageUrl'];
-    isFreeDeliveryExist = json['isFreeDeliveryExist'];
-    tcategoryStoreId = json['tcategoryStoreId'];
-  }
-
+@override
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
     data['id'] = this.id;
@@ -68,5 +63,17 @@ class Items {
     data['isFreeDeliveryExist'] = this.isFreeDeliveryExist;
     data['tcategoryStoreId'] = this.tcategoryStoreId;
     return data;
+  }
+
+  @override
+  JsonConvertable fromJson(Map<String, dynamic> json) {
+    return StoreItem()
+    ..id = json['id']
+    ..title = json['title']
+    ..imageUrl = json['imageUrl']
+    ..address = json['address']
+    ..logoImageUrl = json['logoImageUrl']
+    ..isFreeDeliveryExist = json['isFreeDeliveryExist']
+    ..tcategoryStoreId = json['tcategoryStoreId'];
   }
 }

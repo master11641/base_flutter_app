@@ -5,7 +5,7 @@ import 'package:get/get.dart';
 
 class StoreController extends GetxController {
   final pages = <PageModel>[];
- final items = <Items>[].obs;
+ final items = <StoreItem>[].obs;
   final itemsPerPage = 10;
   final currentPage = 0.obs;
   StoreController() {
@@ -15,9 +15,9 @@ class StoreController extends GetxController {
     if(pages.length!=0 && pages.last.hasMore==false){return;}
     var response = await NetService.fetchJsonData(Urls.storesUrl +
         "ItemsInPage=$itemsPerPage&PageNumber=${(currentPage.value + 1)}");
-    PageModel pageModel = PageModel.fromJson(response);
+    PageModel pageModel = PageModel.fromJson(response,new StoreItem());
     pageModel.items!.forEach((element) {
-      items.add(element);
+      items.add(element as StoreItem);
     });
     pages.add(pageModel);
     currentPage.value++;
